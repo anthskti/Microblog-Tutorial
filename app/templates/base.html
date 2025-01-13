@@ -8,9 +8,25 @@
         {% endif %}
     </head>
     <body> 
-        <div>Microblog: <a href="/index">Home</a></div>
+        <div>
+            Microblog: 
+            <!--<a href="/index">Home</a>  this is normal, but bottom is better if you change links in future -->
+            <a href="url_for(index)">Home</a>
+            <a href="url_for(login)">Login</a>
+        </div>
         <hr>
-        <!-- used to define the place wheree derived templates can insert themselves-->
+        <!-- temp solution: status of inputs -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{message}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+        <!-- used to define the place where derived templates can insert themselves-->
         {% block content %}{% endblock %} 
     </body>
 </html>
